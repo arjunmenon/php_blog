@@ -1,0 +1,44 @@
+body {
+	/*background-color: red;*/
+	font-family: 'IBM Plex Sans Condensed', sans-serif;
+}
+
+[data-href] { cursor: pointer; }
+
+.table-row{
+	cursor:pointer;
+}
+
+.bg-dark {
+	background-color: #161616 !important;
+}
+
+.display-4 {
+	/*font-weight: 400;*/
+	font-family: 'IBM Plex Sans Condensed', sans-serif;
+}
+
+.navbar {
+	border-bottom: 1px solid #393939;
+}
+
+.blockquote-footer {
+	font-size: 100%;
+}
+
+.btn {
+	text-align: left;
+	border-radius: 0;
+	padding: 0.3rem 1rem 1rem;
+	padding-right: 2.3rem;
+}
+
+.form-control {
+	border-radius: 0;
+}
+
+/*.thead {
+	background-color: #111;
+	border-bottom: 1px solid #393939;
+	color: #fff;
+}*/
