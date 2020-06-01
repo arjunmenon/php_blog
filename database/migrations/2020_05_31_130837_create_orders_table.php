@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->softDeletesTz('deleted_at', 0);
             $table->text('note');
             $table->string('receipt');
-            $table->json('raw_response');
+            $table->text('raw_response');
             $table->timestamps();
         });
     }

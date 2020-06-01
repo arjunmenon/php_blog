@@ -19,7 +19,7 @@ class SetNullableToTableColumns extends Migration
             $table->string('transaction_reference_number')->nullable()->change();
             $table->string('transaction_signature')->nullable()->change();
             $table->text('note')->nullable()->change();
-            $table->json('raw_response')->nullable()->change();
+            $table->text('raw_response')->nullable()->change();
         });
 
         Schema::table('orders', function (Blueprint $table) {
@@ -28,7 +28,7 @@ class SetNullableToTableColumns extends Migration
             $table->string('transaction_reference_number')->nullable()->change();
             $table->text('note')->nullable()->change();
             $table->string('receipt')->nullable()->change();
-            $table->json('raw_response')->nullable()->change();
+            $table->text('raw_response')->nullable()->change();
         });
     }
 

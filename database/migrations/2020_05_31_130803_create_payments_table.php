@@ -22,7 +22,7 @@ class CreatePaymentsTable extends Migration
             $table->string('transaction_signature');
             $table->text('note');
             $table->softDeletesTz('deleted_at', 0);
-            $table->json('raw_response');
+            $table->text('raw_response');
             $table->timestamps();
         });
     }
