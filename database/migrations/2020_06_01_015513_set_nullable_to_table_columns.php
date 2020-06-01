@@ -25,10 +25,13 @@ class SetNullableToTableColumns extends Migration
         Schema::table('orders', function (Blueprint $table) {
             $table->foreignId('amount_id')->nullable()->change();
             $table->renameColumn('transaction_order_number', 'transaction_reference_number');
-            $table->string('transaction_reference_number')->nullable()->change();
             $table->text('note')->nullable()->change();
             $table->string('receipt')->nullable()->change();
             $table->text('raw_response')->nullable()->change();
+        });
+        
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('transaction_reference_number')->nullable()->change();
         });
     }
 
