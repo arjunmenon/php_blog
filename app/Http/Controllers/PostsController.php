@@ -50,7 +50,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        if(isset(auth()->user()->paid))
+        if(auth()->user()->paid == false)
         {
             return redirect('/dashboard')->with('error', 'Subscription payment incomplete.');
         }
@@ -66,7 +66,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        if(isset(auth()->user()->paid))
+        if(auth()->user()->paid == false)
         {
             return redirect('/dashboard')->with('error', 'Subscription payment incomplete.');
         }
@@ -119,7 +119,7 @@ class PostsController extends Controller
             return redirect('/posts')->with('error', 'Unauthorized Page');
         }
 
-        if(isset(auth()->user()->paid))
+        if(auth()->user()->paid == false)
         {
             return redirect('/dashboard')->with('error', 'Subscription payment incomplete.');
         }
@@ -155,7 +155,7 @@ class PostsController extends Controller
             return redirect('/posts')->with('error', 'Unauthorized Page');
         }
 
-        if(isset(auth()->user()->paid))
+        if(auth()->user()->paid == false)
         {
             return redirect('/dashboard')->with('error', 'Subscription payment incomplete.');
         }
@@ -189,7 +189,7 @@ class PostsController extends Controller
             return redirect('/posts')->with('error', 'Unauthorized Page');
         }
 
-        if(isset(auth()->user()->paid))
+        if(auth()->user()->paid == false)
         {
             return redirect('/dashboard')->with('error', 'Subscription payment incomplete.');
         }
