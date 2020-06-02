@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 
 class PostsController extends Controller
 {
@@ -14,18 +15,30 @@ class PostsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['all_posts', 'show']]);
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of current users resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // $posts = Post::all();
         // $posts = Post::orderBy('created_at', 'desc')->get();
+        // $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        $user = auth()->user();
+        $posts = Post::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(10);
+        return view('posts.index')->with('posts', $posts);
+    }
+
+    /**
+     * Display a listing of all users resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function all_posts()
+    {
         $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         return view('posts.index')->with('posts', $posts);
     }
@@ -37,6 +50,11 @@ class PostsController extends Controller
      */
     public function create()
     {
+        if(isset(auth()->user()->paid))
+        {
+            return redirect('/dashboard')->with('error', 'Subscription payment incomplete.');
+        }
+
         return view('posts.create');
     }
 
@@ -48,6 +66,11 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        if(isset(auth()->user()->paid))
+        {
+            return redirect('/dashboard')->with('error', 'Subscription payment incomplete.');
+        }
+
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required'
@@ -83,6 +106,24 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+
+        //Check if post exists before accessing
+        if (!isset($post))
+        {
+            return redirect('/posts')->with('error', 'No Post Found');
+        }
+
+        // Check for correct user
+        if(auth()->user()->id !==$post->user_id)
+        {
+            return redirect('/posts')->with('error', 'Unauthorized Page');
+        }
+
+        if(isset(auth()->user()->paid))
+        {
+            return redirect('/dashboard')->with('error', 'Subscription payment incomplete.');
+        }
+
         return view('posts.edit')->with('post', $post);
     }
 
@@ -101,6 +142,24 @@ class PostsController extends Controller
         ]);
 
         $post = Post::find($id);
+
+        //Check if post exists before accessing
+        if (!isset($post))
+        {
+            return redirect('/posts')->with('error', 'No Post Found');
+        }
+
+        // Check for correct user
+        if(auth()->user()->id !==$post->user_id)
+        {
+            return redirect('/posts')->with('error', 'Unauthorized Page');
+        }
+
+        if(isset(auth()->user()->paid))
+        {
+            return redirect('/dashboard')->with('error', 'Subscription payment incomplete.');
+        }
+
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->save();
@@ -117,6 +176,24 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+
+        //Check if post exists before accessing
+        if (!isset($post))
+        {
+            return redirect('/posts')->with('error', 'No Post Found');
+        }
+
+        // Check for correct user
+        if(auth()->user()->id !==$post->user_id)
+        {
+            return redirect('/posts')->with('error', 'Unauthorized Page');
+        }
+
+        if(isset(auth()->user()->paid))
+        {
+            return redirect('/dashboard')->with('error', 'Subscription payment incomplete.');
+        }
+
         $post->delete();
 
         return redirect('/posts/')->with('success', 'Post was successfully removed');

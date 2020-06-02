@@ -23,7 +23,8 @@ use Illuminate\Support\Facades\Redis;
 // 	return 'Hello Worls';
 // });
 
-Route::get('/', 'PagesController@index');
+// Route::get('/', 'PagesController@index');
+Route::get('/', 'PostsController@index');
 
 Route::get('/about', 'PagesController@about');
 
@@ -40,7 +41,9 @@ Route::put('/dashboard', function () {
     return redirect()->to('/dashboard');
 });
 
-Route::get('user/{id}', 'UserController@show');
+Route::get('/user/{id}', 'UserController@show');
+
+Route::get('/all_posts', 'PostsController@all_posts')->name('all_posts');
 
 Route::resource('posts', 'PostsController');
 

@@ -14,14 +14,21 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed&family=Montserrat&display=swap" rel="stylesheet" type="text/css"> 
+    {{-- <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed&family=Roboto+Condensed:wght@700&family=Noto+Sans+KR:wght@500&family=Montserrat&family=IBM+Plex+Mono&display=swap" rel="stylesheet" type="text/css">  --}}
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 
 </head>
 <body>
-    <div id="app">
+    @include('components.navbar')
+    <div class="container" style="margin-top: 25px;">
+        @include('components.messages')
+        @yield('content')
+    </div>
+    {{-- <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -32,14 +39,11 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -76,6 +80,6 @@
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
+    </div> --}}
 </body>
 </html>

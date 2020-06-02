@@ -1,9 +1,36 @@
 body {
 	/*background-color: red;*/
 	font-family: 'IBM Plex Sans Condensed', sans-serif;
+	background-color: #000;
+	color: #fff;
 }
 
 [data-href] { cursor: pointer; }
+
+.table {
+	/*color: #959393;*/
+	color: #fff;
+}
+
+.table-hover tbody tr {
+	transition: 0.3s;
+	opacity: 0.3;
+}
+
+.table-hover tbody tr:hover {
+	color: #fff;
+	opacity: 1;
+}
+
+.td-title {position: relative;}
+
+.td-title::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 30px;
+}
 
 .table-row{
 	cursor:pointer;
@@ -13,14 +40,20 @@ body {
 	background-color: #161616 !important;
 }
 
+.navbar-brand {font-family: 'Montserrat', sans-serif;}
 .display-4 {
-	/*font-weight: 400;*/
-	font-family: 'IBM Plex Sans Condensed', sans-serif;
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+	margin-bottom: 60px;
+	line-height: 0.9;
+	font-weight: bold;
 }
 
 .navbar {
 	border-bottom: 1px solid #393939;
 }
+
+.nav-link {text-transform: capitalize;}
 
 .blockquote-footer {
 	font-size: 100%;
@@ -33,8 +66,30 @@ body {
 	padding-right: 2.3rem;
 }
 
+.btn-primary {
+	background-color: #0f62fe;
+}
+
+.btn-primary:hover {
+	background-color: #0353e9;
+}
+
+.btn-success {
+	background-color: #24a148;
+	border-color: #24a148;
+}
+
 .form-control {
 	border-radius: 0;
+	background-color: #262626;
+}
+
+.form-control:focus {
+    color: #fff;
+    background-color: #262626d6;
+    border-color: #fff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
 /*.thead {
@@ -42,3 +97,26 @@ body {
 	border-bottom: 1px solid #393939;
 	color: #fff;
 }*/
+
+.list-group {
+	border-radius: 0;
+}
+
+.list-group-item {
+	background-color: #262626;
+	color: #aeaeae;
+}
+
+.list-group-item:hover {
+	background-color: #0353e9;
+	color: #fff;
+}
+
+.list-group-item.active {
+	background-color: #0353e9;
+}
+
+.card {
+	background-color: #161616;
+	border-radius: 0;
+}
